@@ -45,12 +45,12 @@ ln -s ../usr/lib/centos-release-devel %{buildroot}/etc/redhat-release
 
 # create /etc/os-release
 cat << EOF >>%{buildroot}/usr/lib/os-release
-NAME="%{product_family}"
+NAME="%{product_family}%{?variant_titlecase: %{variant_titlecase}}"
 VERSION="%{full_release_version} (%{release_name})"
 ID="centos"
 ID_LIKE="rhel fedora"
 VERSION_ID="%{full_release_version}"
-PRETTY_NAME="%{product_family} %{full_release_version} (%{release_name})"
+PRETTY_NAME="%{product_family}%{?variant_titlecase: %{variant_titlecase}} %{full_release_version} (%{release_name})"
 ANSI_COLOR="0;31"
 HOME_URL="https://wiki.centos.org/SpecialInterestGroup/Atomic/Download/"
 BUG_REPORT_URL="https://bugs.centos.org/"
