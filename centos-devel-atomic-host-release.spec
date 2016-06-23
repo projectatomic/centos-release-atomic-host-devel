@@ -75,6 +75,10 @@ for file in CentOS-*.repo; do
     install -m 644 $file %{buildroot}/etc/yum.repos.d
 done
 
+# add base centos remote
+mkdir -p -m 755 %{buildroot}/etc/ostree/remotes.d
+install -m 644 centos-atomic-host.conf %{buildroot}/etc/ostree/remotes.d
+
 # use unbranded datadir
 mkdir -p -m 755 %{buildroot}/%{_datadir}/centos-release
 ln -s centos-release %{buildroot}/%{_datadir}/redhat-release
