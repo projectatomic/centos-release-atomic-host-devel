@@ -71,17 +71,9 @@ done
 
 # copy yum repos
 mkdir -p -m 755 %{buildroot}/etc/yum.repos.d
-for file in CentOS-*.repo; do
+for file in CentOS-*.repo; do 
     install -m 644 $file %{buildroot}/etc/yum.repos.d
 done
-
-# add base centos remote
-mkdir -p -m 755 %{buildroot}/etc/ostree/remotes.d
-install -m 644 centos-atomic-host.conf %{buildroot}/etc/ostree/remotes.d
-
-# add centos atomic sig key
-mkdir -p -m 755 %{buildroot}/usr/share/ostree/trusted.gpg.d
-/usr/bin/gpg2 --homedir %{buildroot}/usr/share/ostree/trusted.gpg.d --import %{buildroot}/RPM-GPG-KEY-CentOS-SIG-Atomic
 
 # use unbranded datadir
 mkdir -p -m 755 %{buildroot}/%{_datadir}/centos-release
@@ -109,8 +101,6 @@ install -m 0644 90-default.preset %{buildroot}%{_prefix}/lib/systemd/system-pres
 %config(noreplace) /etc/issue.net
 /etc/pki/rpm-gpg/
 %config(noreplace) /etc/yum.repos.d/*
-/etc/ostree/remotes.d/
-/usr/share/ostree/trusted.gpg.d/
 %{_docdir}/redhat-release
 %{_docdir}/centos-release/*
 %{_datadir}/redhat-release
