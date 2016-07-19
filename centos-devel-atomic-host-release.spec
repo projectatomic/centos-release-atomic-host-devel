@@ -77,7 +77,9 @@ done
 
 # add base centos remote
 mkdir -p -m 755 %{buildroot}/etc/ostree/remotes.d
-install -m 644 centos-atomic-host.conf %{buildroot}/etc/ostree/remotes.d
+for f in centos-atomic-host.conf centos-atomic-continuous.conf; do \
+    install -m 644 $f %{buildroot}/etc/ostree/remotes.d; \
+done
 
 # add centos atomic sig key
 mkdir -p -m 700 %{buildroot}/usr/share/ostree/trusted.gpg.d
