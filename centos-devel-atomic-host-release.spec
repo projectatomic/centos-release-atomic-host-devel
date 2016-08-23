@@ -54,6 +54,8 @@ PRETTY_NAME="%{product_family}%{?variant_titlecase: %{variant_titlecase}} %{full
 ANSI_COLOR="0;31"
 HOME_URL="https://wiki.centos.org/SpecialInterestGroup/Atomic/Download/"
 BUG_REPORT_URL="https://bugs.centos.org/"
+VARIANT="Atomic Host"
+VARIANT_ID=atomic.host
 EOF
 ln -s ../usr/lib/os-release %{buildroot}/etc/os-release
 
