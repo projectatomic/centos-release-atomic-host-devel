@@ -21,7 +21,7 @@ License:        GPLv2
 Provides:       centos-release = %{version}-%{release}
 Provides:       redhat-release = %{upstream_release_version}
 Provides:       system-release = %{upstream_release_version}
-Provides:       system-release(releasever) = %{upstream_release_version}
+Provides:       system-release(releasever) = %{dist_release_version}
 Source0:        centos-devel-atomic-host-release-%{base_release_version}.tar.gz
 
 %description
