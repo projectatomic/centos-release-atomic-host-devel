@@ -14,7 +14,8 @@
 
 Name:           centos-devel-atomic-host-release
 Version:        %{base_release_version}
-Release:        %{centos_rel}%{?dist}.2.10
+# mostly academic; this will get clobbered by rdgo anyway
+Release:        1-%{?dist}.devel
 Summary:        %{product_family} release file
 Group:          System Environment/Base
 License:        GPLv2
@@ -39,9 +40,10 @@ mkdir -p %{buildroot}/etc
 mkdir -p %{buildroot}/usr/lib/
 
 # create /etc/system-release and /etc/redhat-release
-echo "%{product_family} release %{full_release_version}.%{centos_rel} (%{release_name}) " > %{buildroot}/usr/lib/centos-release-devel
-ln -s ../usr/lib/centos-release-devel %{buildroot}/etc/system-release
-ln -s ../usr/lib/centos-release-devel %{buildroot}/etc/redhat-release
+echo "%{product_family} release %{full_release_version} (%{release_name}) " > %{buildroot}/usr/lib/centos-release-devel
+ln -s ../usr/lib/centos-release-devel %{buildroot}/etc/centos-release
+ln -s centos-release %{buildroot}/etc/system-release
+ln -s centos-release %{buildroot}/etc/redhat-release
 
 # create /etc/os-release
 cat << EOF >>%{buildroot}/usr/lib/os-release
@@ -106,6 +108,7 @@ install -m 0644 90-default.preset %{buildroot}%{_prefix}/lib/systemd/system-pres
 
 %files
 %defattr(0644,root,root,0755)
+/etc/centos-release
 /etc/redhat-release
 /etc/system-release
 /etc/os-release
