@@ -8,7 +8,7 @@
 %define dist_release_version 7
 # Irritatingly systemd depends on system-release >= 7.2 so
 # we need to synthesize that.
-%define upstream_release_version 7.2
+%define upstream_release_version 7.5.0.1
 #define beta Beta
 %define dist .el%{dist_release_version}.centos
 
