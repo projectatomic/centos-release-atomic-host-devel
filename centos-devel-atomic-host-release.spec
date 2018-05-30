@@ -87,6 +87,19 @@ done
 mkdir -p -m 700 %{buildroot}/usr/share/ostree/trusted.gpg.d
 /usr/bin/gpg2 --homedir %{buildroot}/usr/share/ostree/trusted.gpg.d --import RPM-GPG-KEY-CentOS-SIG-Atomic
 
+# set up the dist tag macros
+install -d -m 755 %{buildroot}/etc/rpm
+cat >> %{buildroot}/etc/rpm/macros.dist << EOF
+# dist macros.
+
+%%centos_ver %{base_release_version}
+%%centos %{base_release_version}
+%%rhel %{base_release_version}
+%%dist %dist
+%%el%{base_release_version} 1
+EOF
+
+
 # use unbranded datadir
 mkdir -p -m 755 %{buildroot}/%{_datadir}/centos-release
 ln -s centos-release %{buildroot}/%{_datadir}/redhat-release
@@ -115,6 +128,7 @@ install -m 0644 90-default.preset %{buildroot}%{_prefix}/lib/systemd/system-pres
 %config(noreplace) /etc/yum.repos.d/*
 /etc/ostree/remotes.d/
 /usr/share/ostree/trusted.gpg.d/
+/etc/rpm/macros.dist
 %{_docdir}/redhat-release
 %{_docdir}/centos-release/*
 %{_datadir}/redhat-release
