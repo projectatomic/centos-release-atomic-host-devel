@@ -109,3 +109,4 @@ enable PackageKit.service
 # Enable ostree-remount on ostree-based systems
 # https://github.com/CentOS/sig-atomic-buildscripts/pull/321
 enable ostree-remount.service
+enable ostree-finalize-staged.path
